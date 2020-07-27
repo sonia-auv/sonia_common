@@ -1,0 +1,10 @@
+uint8 FREQUENCY_25=1
+uint8 FREQUENCY_30=2
+uint8 FREQUENCY_35=3
+uint8 FREQUENCY_40=4
+
+uint8 frequency
+float64 radius
+geometry_msgs/Pose position
+bool start
+---
