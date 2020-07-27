@@ -77,7 +77,7 @@ file(GLOB_RECURSE sonia_common_SRC_FILES "${sonia_common_SRC_DIR}/*.h")
 # Include all the directories where source can be found.
 include_directories(
     ${catkin_INCLUDE_DIRS}
-    ${Eigen_INCLUDE_DIRS}
+    ${Eigen3_INCLUDE_DIRS}
     ${OpenCV_INCLUDE_DIRS}
     ${sonia_common_SRC_DIR}
 )
@@ -86,7 +86,7 @@ include_directories(
 # C R E A T E   E X E C U T A B L E
 
 add_library(sonia_common ${sonia_common_SRC_FILES})
-target_link_libraries(sonia_common ${catkin_LIBRARIES} ${Eigen_LIBRARIES} ${OpenCV_LIBRARIES})
+target_link_libraries(sonia_common ${catkin_LIBRARIES} ${Eigen3_LIBRARIES} ${OpenCV_LIBRARIES})
 set_target_properties(sonia_common PROPERTIES LINKER_LANGUAGE CXX)
 
 install(

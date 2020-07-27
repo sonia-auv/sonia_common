@@ -6,7 +6,7 @@ ARG BUILD_DATE
 ARG VERSION
 ARG SONIA_USER=sonia
 ARG SONIA_UID=50000
-ARG BASE_LIB_NAME=sonia_msgs
+ARG BASE_LIB_NAME=sonia_common
 
 LABEL maintainer="club.sonia@etsmtl.net"
 LABEL net.etsmtl.sonia-auv.base_lib.build-date=${BUILD_DATE}
@@ -30,7 +30,7 @@ RUN apt-get update \
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
 ENV BASE_LIB_WS_SETUP=${BASE_LIB_WS}/devel/setup.bash
-ENV BASE_LIB_NAME=${MODULE_LIB_NAME}
+ENV BASE_LIB_NAME=${BASE_LIB_NAME}
 ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER}

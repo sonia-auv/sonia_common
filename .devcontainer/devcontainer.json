@@ -25,6 +25,6 @@
 	"mounts": [
 		"source=vscode-server-extension,target=/home/sonia/.vscode-server/extensions,type=volume"
 	],
-	"workspaceMount": "target=/home/sonia/ros_sonia_ws/src/sonia_common,type=volume",
-	"workspaceFolder": "/home/sonia/ros_sonia_ws/src/sonia_common"
+	"workspaceMount": "target=/home/sonia/base_lib_ws/src/sonia_common,type=volume",
+	"workspaceFolder": "/home/sonia/base_lib_ws/src/sonia_common"
 }

@@ -28,7 +28,7 @@
 #include <sonia_common/maths/conversion.h>
 
 #include <eigen3/Eigen/Eigen>
-#include <Eigen/Geometry>
+#include <eigen3/Eigen/Geometry>
 #include <sonia_common/maths/numbers.h>
 
 // test values : Rot Z, Rot Y, Rot X
