@@ -34,7 +34,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "sonia-common/macros.h"
+#include "sonia_common/macros.h"
 
 namespace sonia_common {
 
@@ -43,6 +43,6 @@ std::string Format(const std::string &format, Args &&... args) ATLAS_NOEXCEPT;
 
 }  // namespace sonia_common
 
-#include "sonia-common/io/formatter_inl.h"
+#include "sonia_common/io/formatter_inl.h"
 
 #endif  // SONIA_COMMON_IO_FORMATTER_H_

@@ -25,7 +25,7 @@
 
 #include <stdlib.h>
 #include <string>
-#include "sonia-common/macros.h"
+#include "sonia_common/macros.h"
 
 #ifndef SONIA_COMMON_CONFIG_H_
 #define SONIA_COMMON_CONFIG_H_

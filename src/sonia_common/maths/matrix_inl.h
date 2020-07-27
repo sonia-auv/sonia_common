@@ -29,7 +29,7 @@
 
 #include <stdexcept>
 #include <eigen3/Eigen/Geometry>
-#include "sonia-common/maths/conversion.h"
+#include "sonia_common/maths/conversion.h"
 
 using std::cos;
 using std::sin;
