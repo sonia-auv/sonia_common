@@ -24,7 +24,8 @@ ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
 RUN apt-get update \
     && apt-get install -y libyaml-cpp-dev \
     openssh-client \
-    gdb
+    gdb \
+    ros-melodic-diagnostics
 
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
