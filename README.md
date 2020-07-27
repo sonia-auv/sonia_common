@@ -1,26 +1,21 @@
-# <ENTER_YOUR_NODE_NAME>
+# sonia_common
 
-![Docker Image CI - Master Branch](https://github.com/sonia-auv/<ENTER_YOUR_NODE_NAME>/workflows/Docker%20Image%20CI%20-%20Master%20Branch/badge.svg)
-![Docker Image CI - Develop Branch](https://github.com/sonia-auv/<ENTER_YOUR_NODE_NAME>/workflows/Docker%20Image%20CI%20-%20Develop%20Branch/badge.svg?branch=develop)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/sonia-auv/<ENTER_YOUR_NODE_NAME>)
-![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/sonia-auv/<ENTER_YOUR_NODE_NAME>.svg)
+SONIA'S custom ROS messages package, containing all custom messages developed to work along with our custom ROS modules
 
+![Docker Image CI - Master Branch](https://github.com/sonia-auv/sonia_common/workflows/Docker%20Image%20CI%20-%20Master%20Branch/badge.svg)
+![Docker Image CI - Develop Branch](https://github.com/sonia-auv/sonia_common/workflows/Docker%20Image%20CI%20-%20Develop%20Branch/badge.svg?branch=develop)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/sonia-auv/sonia_common)
+![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/sonia-auv/sonia_common.svg)
 
-*Please read the instructions and fill in the blanks*
-
-
-One Paragraph of project description goes here
 
 ## Getting Started
 
-Clone current project by using following command :
-```bash
-    git clone git@github.com:sonia-auv/<ENTER_YOUR_NODE_NAME>.git
-```
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-**IMPORTANT :** *If you have just imported your repository, please follow the instructions in* [BOOTSTRAP.md](BOOTSTRAP.md) (Once the bootstrap completed, you can remove this comment from the README)
+Clone current project by using following command :
+```bash
+    git clone git@github.com:sonia-auv/sonia_common.git
+```
 
 ### Prerequisites
 

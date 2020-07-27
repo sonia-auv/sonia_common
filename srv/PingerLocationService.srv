@@ -1,0 +1,3 @@
+uint8 frequency
+---
+sonia_msgs/PingerLocation pingerLocation
