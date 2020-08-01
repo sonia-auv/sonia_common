@@ -5,7 +5,6 @@ on:
     branches: [feature/**]
 
 jobs:
-
   build-ros-perception-x86-64:
     name: "Build ROS perception X86/64"
     runs-on: ubuntu-latest
@@ -60,7 +59,7 @@ jobs:
 
       - name: Build the docker image (perception based)
         run: |
-          docker build . --platform arm --tag build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BUILD_DATE=$(date '+%Y-%m-%d_%H:%M:%S') --build-arg VERSION=${GITHUB_REF##*/}-$(date '  +%Y-%m-%d_%H:%M:%S') --build-arg BASE_IMAGE=${BASE_IMAGE}
+          docker build . --platform arm64 --tag build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BUILD_DATE=$(date '+%Y-%m-%d_%H:%M:%S') --build-arg VERSION=${GITHUB_REF##*/}-$(date '  +%Y-%m-%d_%H:%M:%S') --build-arg BASE_IMAGE=${BASE_IMAGE}
 
       - name: Login to Github Package Registry
         run: |
