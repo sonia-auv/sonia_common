@@ -1,0 +1,11 @@
+geometry_msgs/Quaternion quaternion
+geometry_msgs/Accel acceleration
+geometry_msgs/Vector3 magnetometer
+Float64 yawUncertainty
+Float64 pitchUncertainty
+Float64 rollUncertainty
+Float64 gyroBiasUncertainty
+Float64 magUncertainty
+Float64 accelUncertainty
+
+Uint16 filterStatus
