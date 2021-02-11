@@ -39,6 +39,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
+          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
           docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
 
   build-ros-perception-arm64:
@@ -87,6 +88,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
+          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
           docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
 
   build-ros-perception-l4t-arm64:
@@ -128,6 +130,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
+          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
           docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
 
   create-release:
