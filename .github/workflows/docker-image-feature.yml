@@ -104,7 +104,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
+          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}-${GITHUB_REF##*/}
 
   notify-success:
     name: "Notify Slack - Success"
