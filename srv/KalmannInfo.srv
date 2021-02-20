@@ -1,0 +1,8 @@
+float64 yawUncertainty
+float64 pitchUncertainty
+float64 rollUncertainty
+float64 gyroBiasUncertainty
+float64 magUncertainty
+float64 accelUncertainty
+
+uint16 filterStatus
