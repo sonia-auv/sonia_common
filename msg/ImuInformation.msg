@@ -1,0 +1,3 @@
+geometry_msgs/Quaternion quaternion
+geometry_msgs/Accel acceleration
+geometry_msgs/Vector3 magnetometer
