@@ -25,7 +25,8 @@ RUN apt-get update \
     && apt-get install -y libyaml-cpp-dev \
     openssh-client \
     gdb \
-    ros-melodic-diagnostics
+    ros-melodic-diagnostics \ 
+    sudo
 
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
@@ -33,7 +34,9 @@ ENV BASE_LIB_WS_SETUP=${BASE_LIB_WS}/devel/setup.bash
 ENV BASE_LIB_NAME=${BASE_LIB_NAME}
 ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
-RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER}
+RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
+
+RUN  echo 'sonia:test' | chpasswd
 
 ## Adding support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions \
