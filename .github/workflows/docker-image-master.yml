@@ -39,8 +39,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
+          docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   build-ros-perception-arm64:
     name: "Build ROS perception AMR64"
@@ -88,8 +87,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
+          docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   build-ros-perception-l4t-arm64:
     name: "Build ROS perception L4T ARM64 (NVIDIA XAVIER)"
@@ -130,8 +128,7 @@ jobs:
 
       - name: Push Image to Github Packages Registry
         run: |
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}
-          docker push ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-latest
+          docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   create-release:
     name: "Create Github Release"
