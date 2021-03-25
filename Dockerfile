@@ -1,5 +1,6 @@
 ARG BASE_IMAGE="ros:melodic-perception"
 
+
 FROM ${BASE_IMAGE}
 
 ARG BUILD_DATE
