@@ -73,10 +73,11 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           file: Dockerfile.cuda
           push: false # This would be set to true in a real world deployment scenario.
-          tags: build-${{ env.TARGET_VERSION }}-${{ env.CURRENT_BRANCH }}-${{ github.run_number }}:latest
+          tags: build-${{ env.TARGET_VERSION }}-${{ env.CURRENT_BRANCH }}-${{ github.run_number }}
           build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.CURRENT_BRANCH }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ env.BASE_IMAGE }}:${{ env.CUDA }}-devel-ubuntu${{ env.UBUNTU }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
+          load: true
 
         # Temp fix
         # https://github.com/docker/build-push-action/issues/252
