@@ -70,7 +70,7 @@ jobs:
         with:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
-          file: .Dockerfile.cuda
+          file: Dockerfile.cuda
           push: false # This would be set to true in a real world deployment scenario.
           tags: build-${{ env.TARGET_VERSION }}-${{ github.ref }}-${{ github.run_number }}
           build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.ref }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ env.BASE_IMAGE }}:${{ env.CUDA }}-devel-ubuntu${{ env.UBUNTU }}
