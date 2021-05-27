@@ -64,6 +64,7 @@ jobs:
       - name: Set build arguments
         run: |
           echo "CURRENT_DATE=$(date '+%Y-%m-%d_%H:%M:%S')" >> $GITHUB_ENV
+          echo "CURRENT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
 
       - name: Build the docker image
         uses: docker/build-push-action@v2
@@ -72,8 +73,8 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           file: Dockerfile.cuda
           push: false # This would be set to true in a real world deployment scenario.
-          tags: build-${{ env.TARGET_VERSION }}-${{ github.ref#*/ }}-${{ github.run_number }}
-          build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.ref#*/ }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ env.BASE_IMAGE }}:${{ env.CUDA }}-devel-ubuntu${{ env.UBUNTU }}
+          tags: build-${{ env.TARGET_VERSION }}-${{ env.CURRENT_BRANCH }}-${{ github.run_number }}
+          build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.CURRENT_BRANCH }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ env.BASE_IMAGE }}:${{ env.CUDA }}-devel-ubuntu${{ env.UBUNTU }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
