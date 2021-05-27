@@ -73,7 +73,7 @@ jobs:
           file: .Dockerfile.cuda
           push: false # This would be set to true in a real world deployment scenario.
           tags: build-${TARGET_VERSION}-${{ github.ref }}-${{ github.run_number }}
-          build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.ref }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ BASE_IMAGE }}:${CUDA}-devel-ubuntu${UBUNTU}
+          build-args: BUILD_DATE=${{ env.CURRENT_DATE }}, VERSION=${{ github.ref }}-${{ env.CURRENT_DATE }}, BASE_IMAGE=${{ env.BASE_IMAGE }}:${{ env.CUDA }}-devel-ubuntu${{ env.UBUNTU }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
