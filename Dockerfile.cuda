@@ -47,10 +47,10 @@ RUN wget https://github.com/opencv/opencv_contrib/archive/${OPENCV}.zip && unzip
 RUN mkdir opencv-${OPENCV}/build && \
     cd opencv-${OPENCV}/build && \
     cmake -DOPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-${OPENCV}/modules \
-        -DWITH_CUDA=ON \
+        -DWITH_CUDA=OFF \
         -DENABLE_FAST_MATH=ON \
-        -DCUDA_FAST_MATH=ON \
-        -DWITH_CUBLAS=ON \
+        -DCUDA_FAST_MATH=OFF \
+        -DWITH_CUBLAS=OFF \
         -DOPENCV_ENABLE_NONFREE=ON \
         -DWITH_GSTREAMER=OFF \
         -DWITH_V4L=OFF \
