@@ -4,7 +4,6 @@ FROM nvidia/cuda:${CUDA}-devel-ubuntu${UBUNTU}
 ARG OPENCV="3.4.14"
 
 RUN apt update
-RUN apt dist-upgrade -y
 ### O P E N C V   C O M P I L A T I O N
 # Update and install dependencies
 RUN apt install -y --no-install-recommends build-essential \
