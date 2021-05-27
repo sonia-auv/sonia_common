@@ -43,11 +43,10 @@ RUN apt install -y --no-install-recommends build-essential \
 # Compile and install OpenCV
 WORKDIR /tmp
 RUN wget https://github.com/opencv/opencv/archive/refs/tags/${OPENCV}.zip && unzip ${OPENCV}.zip && rm ${OPENCV}.zip
-RUN wget https://github.com/opencv/opencv_contrib/archive/${OPENCV}.zip && unzip ${OPENCV}.zip && rm ${OPENCV}.zip
+# RUN wget https://github.com/opencv/opencv_contrib/archive/${OPENCV}.zip && unzip ${OPENCV}.zip && rm ${OPENCV}.zip
 RUN mkdir opencv-${OPENCV}/build && \
     cd opencv-${OPENCV}/build && \
-    cmake -DOPENCV_EXTRA_MODULES_PATH=/tmp/opencv_contrib-${OPENCV}/modules \
-        -DWITH_CUDA=OFF \
+    cmake -DWITH_CUDA=OFF \
         -DENABLE_FAST_MATH=ON \
         -DCUDA_FAST_MATH=OFF \
         -DWITH_CUBLAS=OFF \
