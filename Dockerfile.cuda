@@ -134,6 +134,8 @@ ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
 ENV BASE_LIB_WS_SETUP=${BASE_LIB_WS}/devel/setup.bash
 ENV BASE_LIB_NAME=${BASE_LIB_NAME}
 ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
+ENV SCRIPT_DIR=${BASE_LIB_PATH}/scripts
+ENV ENTRYPOINT_FILE=sonia_entrypoint.sh
 
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 
@@ -147,6 +149,9 @@ WORKDIR ${BASE_LIB_WS}
 
 RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 COPY . ${BASE_LIB_PATH}
+
+RUN chmod +x ${SCRIPT_DIR}/entrypoint.sh
+
 RUN cd /tmp && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic &&  mkdir -p ${BASE_LIB_WS}/src/vision_opencv && mv * ${BASE_LIB_WS}/src/vision_opencv
 RUN cd /tmp && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel  && mkdir -p ${BASE_LIB_WS}/src/image_common && mv * ${BASE_LIB_WS}/src/image_common
 RUN bash -c "source ${ROS_WS_SETUP}; catkin_make"
@@ -155,3 +160,5 @@ RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 
 # Cleanup
 RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/home/sonia/base_lib_ws/src/sonia_common/scripts/entrypoint.sh"]
