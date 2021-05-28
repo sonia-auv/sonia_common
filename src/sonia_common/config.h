@@ -34,7 +34,7 @@ namespace sonia_common {
 
 /// The path where the system will save all the configurations.
 #ifdef OS_DARWIN
-const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP");
+const std::string kWorkspaceRoot = getenv("ROS_WS_SETUP");
 #else
 const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP");
 #endif
