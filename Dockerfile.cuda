@@ -22,6 +22,7 @@ ENV SONIA_HOME=/home/${SONIA_USER}
 ENV SONIA_UID=${SONIA_UID}
 ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
 
+RUN apt update
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
 RUN apt install -y libyaml-cpp-dev \
     openssh-client \
