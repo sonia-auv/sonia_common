@@ -50,7 +50,7 @@ WORKDIR ${BASE_LIB_WS}
 RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 COPY . ${BASE_LIB_PATH}
 
-RUN mv ${SCRIPT_DIR}/${ENTRYPOINT_FILE} ${SCRIPT_DIR}/entrypoint.sh && chmod +x ${SCRIPT_DIR}/entrypoint.sh
+RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.sh
 
 RUN cd /tmp && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic &&  mkdir -p ${BASE_LIB_WS}/src/vision_opencv && mv * ${BASE_LIB_WS}/src/vision_opencv
 RUN cd /tmp && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel  && mkdir -p ${BASE_LIB_WS}/src/image_common && mv * ${BASE_LIB_WS}/src/image_common
@@ -62,4 +62,4 @@ RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 RUN apt autoremove -y
 RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/home/sonia/base_lib_ws/src/sonia_common/scripts/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
