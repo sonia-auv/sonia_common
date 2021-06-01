@@ -42,7 +42,7 @@ jobs:
       OPENCV: "3.4.14"
       ARCH: x86
       TARGET_TYPE: perception
-      TARGET_VERSION: develop
+      TARGET_VERSION: feature
       IMAGE_NAME: sonia_common_cuda
       GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
     steps:
