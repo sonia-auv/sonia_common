@@ -156,7 +156,6 @@ jobs:
           channel: github-ci-notifications
           status: SUCCESS
           color: good
-
   notify-fail:
     name: "Notify Slack - Failure"
     runs-on: ubuntu-latest
