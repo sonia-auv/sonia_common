@@ -59,7 +59,6 @@ RUN bash -c "source ${ROS_WS_SETUP}; catkin_make"
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 
 # Cleanup
-RUN apt autoremove -y
 RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/entrypoint.sh"]
