@@ -47,7 +47,7 @@ RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions \
 
 WORKDIR ${BASE_LIB_WS}
 
-RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+# RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 COPY . ${BASE_LIB_PATH}
 
 RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.sh
