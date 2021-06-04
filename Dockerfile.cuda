@@ -22,12 +22,8 @@ ENV SONIA_HOME=/home/${SONIA_USER}
 ENV SONIA_UID=${SONIA_UID}
 ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
 
-RUN apt update
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
-RUN apt install -y libyaml-cpp-dev \
-    openssh-client \
-    ros-melodic-diagnostics \
-    sudo
+RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-melodic-diagnostics sudo
 
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
@@ -42,18 +38,17 @@ RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 RUN  echo 'sonia:test' | chpasswd
 
 ## Adding support for vscode extension volume caching
-RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions \
-    && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
+RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
 
 WORKDIR ${BASE_LIB_WS}
 
-# RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 COPY . ${BASE_LIB_PATH}
 
 RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.sh
 
-RUN cd /tmp && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic &&  mkdir -p ${BASE_LIB_WS}/src/vision_opencv && mv * ${BASE_LIB_WS}/src/vision_opencv
-RUN cd /tmp && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel  && mkdir -p ${BASE_LIB_WS}/src/image_common && mv * ${BASE_LIB_WS}/src/image_common
+RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+RUN cd /tmp && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic && mkdir -p ${BASE_LIB_WS}/src/vision_opencv && mv * ${BASE_LIB_WS}/src/vision_opencv
+RUN cd /tmp && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel && mkdir -p ${BASE_LIB_WS}/src/image_common && mv * ${BASE_LIB_WS}/src/image_common
 RUN bash -c "source ${ROS_WS_SETUP}; catkin_make"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
@@ -62,3 +57,4 @@ RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/entrypoint.sh"]
+CMD["bash"]
