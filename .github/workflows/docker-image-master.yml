@@ -45,18 +45,17 @@ jobs:
     name: "Build ROS perception CUDA X86/64"
     runs-on: ubuntu-latest
     env:
-      CUDA: "10.2"
+      CUDA: "11.3.0"
       UBUNTU: "18.04"
       OPENCV: "3.4.14"
       ARCH: x86
       TARGET_TYPE: perception
-      TARGET_VERSION: feature
       IMAGE_NAME: sonia_common_cuda
       GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
       - name: Set Target version
-        run: echo "TARGET_VERSION=release-$(sed -n -e 's/.*<version>\(.*\)<\/version>.*/\1/p' package.xml)" >> $GITHUB_ENV
+      run: echo "TARGET_VERSION=release-$(sed -n -e 's/.*<version>\(.*\)<\/version>.*/\1/p' package.xml)" >> $GITHUB_ENV
 
       - name: Build the docker image (perception based)
         run: |
