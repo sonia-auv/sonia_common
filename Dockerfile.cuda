@@ -57,4 +57,4 @@ RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD["bash"]
+CMD ["bash"]
