@@ -156,9 +156,10 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       [
-        build-ros-perception-x86-64,
-        build-ros-perception-arm64,
-        build-ros-perception-l4t-arm64,
+          build-ros-perception-x86-64,
+          build-ros-perception-cuda-x86-64,
+          build-ros-perception-arm64,
+          build-ros-perception-l4t-arm64,
       ]
     if: success()
     steps:
