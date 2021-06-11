@@ -45,7 +45,7 @@ jobs:
     name: "Build ROS perception CUDA X86/64"
     runs-on: ubuntu-latest
     env:
-      CUDA: "11.3.0"
+      CUDA: "11.3.1"
       UBUNTU: "18.04"
       OPENCV: "3.4.14"
       ARCH: x86
