@@ -44,8 +44,6 @@ RUN apt update && apt install -y --no-install-recommends ros-melodic-ros-base=1.
 # install ros packages
 RUN apt update && apt-get install -y --no-install-recommends ros-melodic-perception=1.4.1-0*
 
-RUN apt remove -y ros-melodic-vision-opencv
-RUN apt -y install ros-melodic-cv-bridge
 ###### END INSTALl ROS MELODIC ######
 
 ARG BUILD_DATE
