@@ -31,7 +31,7 @@ ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 
-RUN  echo 'sonia:test' | chpasswd
+RUN echo 'sonia:test' | chpasswd
 
 ## Adding support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server

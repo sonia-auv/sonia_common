@@ -33,9 +33,12 @@ ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 ENV SCRIPT_DIR=${BASE_LIB_PATH}/scripts
 ENV ENTRYPOINT_FILE=sonia_entrypoint.sh
 
+COPY scripts/${ENTRYPOINT_FILE} /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 
-RUN  echo 'sonia:test' | chpasswd
+RUN echo 'sonia:test' | chpasswd
 
 ## Adding support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
@@ -48,7 +51,6 @@ RUN cd src && git clone https://github.com/ros-perception/vision_opencv.git && c
 RUN cd src && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel
 
 COPY . ${BASE_LIB_PATH}
-RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.sh
 RUN bash -c "source ${ROS_WS_SETUP} && catkin_make --use-ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
