@@ -41,6 +41,6 @@ RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions \
 WORKDIR ${BASE_LIB_WS}
 
 COPY . ${BASE_LIB_PATH}
-RUN bash -c "source ${ROS_WS_SETUP}; cmake -GNinja .; ninja"
+RUN bash -c "source ${ROS_WS_SETUP}; cd src/${BASE_LIB_NAME} && cmake -GNinja . && ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
