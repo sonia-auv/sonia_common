@@ -25,8 +25,8 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja run_tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja tests
 
       - name: Login to Github Package Registry
         run: |
@@ -63,8 +63,8 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja run_tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja tests
 
       - name: Login to Github Package Registry
         run: |
@@ -175,6 +175,7 @@ jobs:
       [
         build-ros-perception-x86-64,
         build-ros-perception-arm64,
+        build-ros-perception-cuda-x86-64,
         build-ros-perception-l4t-arm64,
       ]
     steps:
@@ -205,6 +206,7 @@ jobs:
     needs:
       [
         build-ros-perception-x86-64,
+        build-ros-perception-cuda-x86-64,
         build-ros-perception-arm64,
         build-ros-perception-l4t-arm64,
         create-release,

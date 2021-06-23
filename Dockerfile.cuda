@@ -1,50 +1,8 @@
-ARG CUDA="11.3.1"
+ARG CUDA="11.3.0"
 ARG UBUNTU="18.04"
-ARG ARCH=""
-
-FROM nvidia/cuda${ARCH}:${CUDA}-devel-ubuntu${UBUNTU}
-
-###### INSTALl ROS MELODIC ######
-ENV DEBIAN_FRONTEND=noninteractive
-
-## ROS CORE
-# setup timezone
-RUN echo 'Etc/UTC' > /etc/timezone; ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime; exit 0
-RUN apt update && apt install -q -y --no-install-recommends tzdata
-
-# install packages
-RUN apt update && apt install -q -y --no-install-recommends dirmngr gnupg2
-
-# setup keys
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-
-# setup sources.list
-RUN echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros1-latest.list
-
-# setup environment
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
-
-ENV ROS_DISTRO=melodic
-
-# install ros packages
-RUN apt update && apt install -y --no-install-recommends ros-melodic-ros-core=1.4.1-0*
-
-## ROS BASE
-# install bootstrap tools
-RUN apt update && apt install --no-install-recommends -y python-rosdep python-rosinstall python-vcstools
-
-# bootstrap rosdep
-RUN rosdep init && rosdep update --rosdistro $ROS_DISTRO
-
-# install ros packages
-RUN apt update && apt install -y --no-install-recommends ros-melodic-ros-base=1.4.1-0*
-
-## ROS PERCEPTION
-# install ros packages
-RUN apt update && apt-get install -y --no-install-recommends ros-melodic-perception=1.4.1-0*
-
-###### END INSTALl ROS MELODIC ######
+ARG OPENCV="3.4.14"
+ARG ROS="melodic"
+FROM thecanadianroot/opencv-cuda:ubuntu${UBUNTU}-cuda${CUDA}-opencv${OPENCV}-ros${ROS}
 
 ARG BUILD_DATE
 ARG VERSION
@@ -65,7 +23,7 @@ ENV SONIA_UID=${SONIA_UID}
 ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
-RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-melodic-diagnostics sudo
+RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-melodic-diagnostics sudo ninja-build
 
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
@@ -91,7 +49,7 @@ RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.s
 RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 RUN cd /tmp && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic && mkdir -p ${BASE_LIB_WS}/src/vision_opencv && mv * ${BASE_LIB_WS}/src/vision_opencv
 RUN cd /tmp && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel && mkdir -p ${BASE_LIB_WS}/src/image_common && mv * ${BASE_LIB_WS}/src/image_common
-RUN bash -c "source ${ROS_WS_SETUP}; catkin_make"
+RUN bash -c "source ${ROS_WS_SETUP}; cmake -GNinja .; ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 
