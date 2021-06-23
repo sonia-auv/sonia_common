@@ -25,8 +25,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
 
       - name: Login to Github Package Registry
         run: |
@@ -63,8 +62,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} cmake -GNinja . && ninja tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
 
       - name: Login to Github Package Registry
         run: |
@@ -111,8 +109,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
 
       - name: Login to Github Package Registry
         run: |
@@ -156,8 +153,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make run_tests
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
 
       - name: Create Docker Image Tag
         run: |
