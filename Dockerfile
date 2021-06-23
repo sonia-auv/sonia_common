@@ -36,9 +36,9 @@ RUN  echo 'sonia:test' | chpasswd
 ## Adding support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
 
-WORKDIR ${BASE_LIB_PATH}
+WORKDIR ${BASE_LIB_WS}
 
 COPY . ${BASE_LIB_PATH}
-RUN bash -c "source ${ROS_WS_SETUP} && cmake -GNinja . && ninja"
+RUN bash -c "source ${ROS_WS_SETUP} && catkin_make --use-ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
