@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Login to Github Package Registry
         run: |
@@ -55,13 +55,13 @@ jobs:
         run: |
           docker build -f Dockerfile.cuda --tag build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BUILD_DATE=$(date '+%Y-%m-%d_%H:%M:%S') --build-arg VERSION=${GITHUB_REF##*/}-$(date '  +%Y-%m-%d_%H:%M:%S') .
 
+      - name: Run Module Unit Test
+        run: |
+          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
+
       - name: Login to Github Package Registry
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-
-      - name: Run Module Unit Test
-        run: |
-          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
 
       - name: Create Docker Image Tag
         run: |
@@ -101,7 +101,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Login to Github Package Registry
         run: |
@@ -142,7 +142,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-feature-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Create Docker Image Tag
         run: |

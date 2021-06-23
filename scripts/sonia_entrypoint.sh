@@ -2,8 +2,8 @@
 set -e
 
 # setup ros environment
-source $ROS_WS_SETUP
+source "$ROS_WS_SETUP"
 # setup sonia environment
-source $SONIA_WS_SETUP
+source "$SONIA_WS_SETUP"
 
 exec "$@"

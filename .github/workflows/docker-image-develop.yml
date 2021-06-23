@@ -23,7 +23,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Login to Github Package Registry
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Login to Github Package Registry
         run: |
@@ -101,7 +101,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Login to Github Package Registry
         run: |
@@ -142,7 +142,7 @@ jobs:
 
       - name: Run Module Unit Test
         run: |
-          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} /bin/bash -c "cmake -GNinja . && ninja run_tests && ninja tests"
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ninja run_tests
 
       - name: Create Docker Image Tag
         run: |
