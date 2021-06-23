@@ -49,7 +49,7 @@ RUN cp ${SCRIPT_DIR}/${ENTRYPOINT_FILE} /entrypoint.sh && chmod +x /entrypoint.s
 RUN export CMAKE_PREFIX_PATH=/usr/local:$CMAKE_PREFIX_PATH && export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 RUN cd src && git clone https://github.com/ros-perception/vision_opencv.git && cd vision_opencv && git checkout melodic
 RUN cd src && git clone https://github.com/ros-perception/image_common.git && cd image_common && git checkout hydro-devel
-RUN source ${ROS_WS_SETUP} && cmake -GNinja . && ninja
+RUN bash -c "source ${ROS_WS_SETUP} && cmake -GNinja . && ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
 
