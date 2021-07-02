@@ -74,7 +74,7 @@ jobs:
           docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   build-ros-perception-arm64:
-    name: "Build ROS perception ARM64"
+    name: "Build ROS perception AMR64"
     runs-on: ubuntu-latest
     env:
       BASE_IMAGE: "ros:melodic-perception"
