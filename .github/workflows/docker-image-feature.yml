@@ -2,7 +2,7 @@ name: Docker Image CI - Feature Branch
 
 on:
   push:
-    branches: [feature/**]
+    branches: [ feature/** ]
 
 jobs:
   build-ros-perception-x86-64:
@@ -39,7 +39,9 @@ jobs:
           docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   build-ros-perception-arm64:
-    name: "Build ROS perception ARM64"
+    # TODO fix this typo (AMR -> ARM).
+    # CI is blocked when we try to fix this typo. Probably a settings in the repository that uses that typo as requirements...
+    name: "Build ROS perception AMR64"
     runs-on: ubuntu-latest
     env:
       BASE_IMAGE: "ros:melodic-perception"
