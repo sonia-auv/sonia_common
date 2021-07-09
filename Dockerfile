@@ -19,21 +19,20 @@ ENV SONIA_USER=${SONIA_USER}
 ENV SONIA_HOME=/home/${SONIA_USER}
 ENV SONIA_UID=${SONIA_UID}
 ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
-
-## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
-RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb ros-melodic-diagnostics sudo ninja-build
-
 ## ENV FOR BASE LIB
 ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
 ENV BASE_LIB_WS_SETUP=${BASE_LIB_WS}/devel/setup.bash
 ENV BASE_LIB_NAME=${BASE_LIB_NAME}
 ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
-RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
+## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
+RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb ros-melodic-diagnostics sudo ninja-build
+RUN rm -rf /var/lib/apt/lists/*
 
+RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 RUN echo 'sonia:test' | chpasswd
 
-## Adding support for vscode extension volume caching
+## Add support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
 
 WORKDIR ${BASE_LIB_WS}
