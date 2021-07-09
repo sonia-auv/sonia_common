@@ -27,7 +27,7 @@ ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
 RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb ros-melodic-diagnostics sudo ninja-build
-RUN rm -rf /tmp/* && rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 RUN echo 'sonia:test' | chpasswd
