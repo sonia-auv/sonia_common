@@ -32,6 +32,7 @@ ENV ENTRYPOINT_FILE=sonia_entrypoint.sh
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
 RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-melodic-diagnostics sudo ninja-build
+RUN rm -rf /var/lib/apt/lists/*
 
 COPY scripts/${ENTRYPOINT_FILE} /entrypoint.sh
 RUN chmod +x /entrypoint.sh
@@ -53,9 +54,6 @@ COPY . ${BASE_LIB_PATH}
 
 RUN bash -c "source ${ROS_WS_SETUP} && catkin_make --use-ninja"
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
-
-# Cleanup
-RUN rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["bash"]
