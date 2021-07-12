@@ -177,7 +177,7 @@ jobs:
       BASE_IMAGE: "ros:melodic-perception"
       ARCH: arm64
       TARGET_TYPE: perception
-      IMAGE_NAME: sonia_common
+      IMAGE_NAME: sonia_common_cuda
       GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
