@@ -1,3 +1,3 @@
 uint8 slave
 uint8 cmd
-float32multiarray data
+std_msgs/float32multiarray data
