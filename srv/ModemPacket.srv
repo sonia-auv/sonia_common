@@ -1,11 +1,11 @@
-char cmd
+uint8 cmd
 
 ---
 
-char role
+uint8 role
 uint8 channel
 
-char link
+uint8 link
 uint8 packet_count
 uint8 packet_count_loss
 float32 bit_error_rate
