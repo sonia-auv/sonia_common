@@ -49,6 +49,9 @@
 #define ROLE_MASTER 'a'
 #define ROLE_SLAVE 'b'
 
+#define HEADER "hd:p="
+#define END "hd:end"
+
 static const char all_valid [] = {
     CMD_GET_VERSION,
     CMD_GET_PAYLOAD_SIZE,
