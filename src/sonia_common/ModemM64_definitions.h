@@ -42,15 +42,16 @@
 #define CMD_FLUSH 'f'
 #define RESP_GOT_PACKET 'p'
 #define RETURN_ERROR '?'
+#define MALFORMED '!'
+
+#define LINK_UP 'y'
+#define LINK_DOWN 'n'
 
 #define ACK 'a'
 #define NAK 'n'
 
 #define ROLE_MASTER 'a'
 #define ROLE_SLAVE 'b'
-
-#define HEADER "hd:p="
-#define END "hd:end"
 
 static const char all_valid [] = {
     CMD_GET_VERSION,
