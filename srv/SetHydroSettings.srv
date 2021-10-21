@@ -4,3 +4,8 @@ uint8 SET_SIGNAL_THRESHOLD = 5
 
 uint8 setting
 uint32 data
+
+---
+
+uint8 applied_setting
+uint32 applied_data
