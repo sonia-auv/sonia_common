@@ -1,7 +1,5 @@
 std_msgs/Header header
-uint8 frequency
-uint32 amplitude
-uint32 noise
+uint16 frequency
 float64 heading
 float64 elevation
-sonia_common/HydroRawData raw_data
+uint16 debug
