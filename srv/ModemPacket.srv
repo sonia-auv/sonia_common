@@ -1,5 +1,8 @@
 uint8 cmd
 
+uint8 role
+uint8 channel
+
 ---
 
 uint8 role
