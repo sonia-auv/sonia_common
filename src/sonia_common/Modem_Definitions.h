@@ -1,5 +1,5 @@
 /**
- * \file	ModemM64_defitions.h
+ * \file	Modem_Defitions.h
  * \author	Francis Alonzo <francisalonzo29@gmail.com
  * \date	06/09/2021
  * 
