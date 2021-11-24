@@ -1,5 +1,7 @@
-bool kill_state
-bool mission_State
-uint8 depth
+bool kill_switch_state
+bool mission_switch_state
+uint16 depth
 uint8 mission_id
-uint8 mission_state
+int8 mission_state
+uint8 torpedos_state
+uint8 droppers_state
