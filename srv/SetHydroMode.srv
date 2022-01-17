@@ -1,5 +1,5 @@
-string H1_REGISTER "H1"
-string H6_REGISTER "H6"
+string H1_REGISTER="H1"
+string H6_REGISTER="H6"
 
 string register_selected
 
