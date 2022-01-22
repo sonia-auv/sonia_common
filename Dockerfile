@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="ros:melodic-perception"
+ARG BASE_IMAGE="ros:noetic-perception"
 
 FROM ${BASE_IMAGE}
 
