@@ -9,7 +9,7 @@ jobs:
     name: "Build ROS perception X86/64"
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE: "ros:melodic-perception"
+      BASE_IMAGE: "ros:noetic-perception"
       ARCH: x86
       TARGET_TYPE: perception
       TARGET_VERSION: feature
@@ -44,7 +44,7 @@ jobs:
     name: "Build ROS perception AMR64"
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE: "ros:melodic-perception"
+      BASE_IMAGE: "ros:noetic-perception"
       ARCH: arm64
       TARGET_TYPE: perception
       TARGET_VERSION: feature
@@ -162,7 +162,7 @@ jobs:
     name: "Build ROS perception CUDA ARM64"
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE: "ros:melodic-perception"
+      BASE_IMAGE: "ros:noetic-perception"
       ARCH: arm64
       TARGET_TYPE: perception
       TARGET_VERSION: feature
