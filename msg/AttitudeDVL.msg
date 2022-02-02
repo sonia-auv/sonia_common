@@ -1,3 +1,0 @@
-std_msgs/Header header
-
-sonia_common/PositionTarget position
