@@ -1,4 +1,6 @@
 #request value
-string task
+string network_name
+string topic
+float32 threshold
 ---
 bool success
