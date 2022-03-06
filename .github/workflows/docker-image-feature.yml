@@ -89,7 +89,7 @@ jobs:
     name: "Build ROS perception L4T ARM64 (NVIDIA XAVIER)"
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE: "dustynv/ros:melodic-ros-base-l4t-r32.6.1"
+      BASE_IMAGE: "nvcr.io/nvidia/l4t-base:r32.6.1"
       ARCH: arm64
       TARGET_TYPE: perception-l4t
       TARGET_VERSION: feature

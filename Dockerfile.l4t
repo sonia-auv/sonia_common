@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="ros:noetic-perception"
+ARG BASE_IMAGE="nvcr.io/nvidia/l4t-base:r32.6.1"
 
 FROM ${BASE_IMAGE}
 
@@ -30,20 +30,16 @@ RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo nin
 RUN apt upgrade -y
 RUN rm -rf /var/lib/apt/lists/*
 
+## installing ros melodic
+RUN echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+RUN apt update && apt install ros-melodic-ros-base
+
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 RUN echo 'sonia:test' | chpasswd
 
-#RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros-latest.list
-#RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-#RUN apt update && apt install ros-noetic-ros-base
-
 ## Add support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
-
-## Adding Gazebo messages for control visualization.
-WORKDIR ${BASE_LIB_WS}/src
-RUN git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
-RUN cd gazebo_ros_pkgs && rm -r gazebo_dev gazebo_plugins gazebo_ros gazebo_ros_control gazebo_ros_pkgs
 
 WORKDIR ${BASE_LIB_WS}
 
