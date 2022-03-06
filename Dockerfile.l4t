@@ -34,8 +34,8 @@ RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
 RUN echo 'sonia:test' | chpasswd
 
 ## Add rosdep install
-RUN rosdep init
 RUN rosdep update
+RUN apt ros-noetic-diagnostics
 
 ## Add support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
