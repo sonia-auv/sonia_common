@@ -45,8 +45,8 @@ RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo nin
 RUN apt upgrade -y
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY scripts/${ENTRYPOINT_FILE} /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY scripts/${ENTRYPOINT_FILE} ./entrypoint.sh
+RUN chmod 777 ./entrypoint.sh
 
 ## Installing ros melodic
 # setup timezone
