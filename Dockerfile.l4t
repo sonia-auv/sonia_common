@@ -26,7 +26,7 @@ ENV BASE_LIB_NAME=${BASE_LIB_NAME}
 ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
-RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo ninja-build curl
+RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo ninja-build curl gnupg
 RUN apt upgrade -y
 RUN rm -rf /var/lib/apt/lists/*
 
