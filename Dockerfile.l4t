@@ -71,9 +71,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Install ROS packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-melodic-ros-base \
-    ros-melodic-image-transport \
-    ros-melodic-cv_bridge \
+    ros-melodic-desktop-full \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
