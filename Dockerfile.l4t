@@ -15,6 +15,14 @@ LABEL net.etsmtl.sonia-auv.base_lib.build-date=${BUILD_DATE}
 LABEL net.etsmtl.sonia-auv.base_lib.version=${VERSION}
 LABEL net.etsmtl.sonia-auv.base_lib.name=${BASE_LIB_NAME}
 
+# System Specific
+ENV DEBIAN_FRONTEND=noninteractive
+
+# ROS Specific
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV ROS_DISTRO=melodic
+
 ## COMMON ENV
 ENV ROS_LANG_DISABLE=genlisp:geneus
 ENV SONIA_USER=${SONIA_USER}
@@ -31,14 +39,6 @@ ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 # https://github.com/osrf/docker_images/blob/0b33e61b5bbed5b93b9fba2d5bae5db604ff9b58/ros/melodic/ubuntu/bionic/ros-core/Dockerfile
 # https://github.com/osrf/docker_images/blob/0b33e61b5bbed5b93b9fba2d5bae5db604ff9b58/ros/melodic/ubuntu/bionic/ros-base/Dockerfile
 # https://github.com/osrf/docker_images/blob/7ff09c2a75e902bc2bb25a1f1ae748ec4e9c7a4b/ros/melodic/ubuntu/bionic/robot/Dockerfile
-
-# System Specific
-ENV DEBIAN_FRONTEND=noninteractive
-
-# ROS Specific
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
-ENV ROS_DISTRO=melodic
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
 RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo ninja-build curl gnupg
