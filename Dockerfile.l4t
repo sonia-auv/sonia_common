@@ -86,3 +86,6 @@ COPY . ${BASE_LIB_PATH}
 RUN bash -c "source ${ROS_WS_SETUP} && catkin_make --use-ninja"
 
 RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
