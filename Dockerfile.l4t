@@ -39,7 +39,7 @@ RUN echo 'sonia:test' | chpasswd
 
 RUN mkdir -p ~/image_transport_ws/src
 RUN cd ~/image_transport_ws/src
-RUN source /opt/ros/noetic/setup.bash
+RUN bash -c "source ${ROS_WS_SETUP}"
 RUN catkin_create_pkg learning_image_transport image_transport cv_bridge
 
 RUN cd ~/image_transport_ws
