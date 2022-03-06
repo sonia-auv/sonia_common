@@ -116,7 +116,7 @@ jobs:
 
       - name: Build the docker image (perception based)
         run: |
-          docker build . --tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BASE_IMAGE=${BASE_IMAGE}
+          docker build -f Dockerfile.l4t --tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BASE_IMAGE=${BASE_IMAGE} .
 
       - name: Run Module Unit Test
         run: |
