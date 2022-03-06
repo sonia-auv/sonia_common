@@ -37,12 +37,12 @@ RUN echo 'sonia:test' | chpasswd
 #RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 #RUN apt update && apt install ros-noetic-ros-base
 
-RUN mkdir -p ~/image_transport_ws/src
-RUN cd ~/image_transport_ws/src
+RUN mkdir -p ${SONIA_HOME}/image_transport_ws/src
+WORKDIR ${SONIA_HOME}/image_transport_ws/src
 RUN bash -c "source ${ROS_WS_SETUP}"
 RUN catkin_create_pkg learning_image_transport image_transport cv_bridge
 
-RUN cd ~/image_transport_ws
+WORKDIR ${SONIA_HOME}/image_transport_ws
 RUN rosdep install --from-paths src -i -y --rosdistro indigo
 RUN catkin_make
 RUN source devel/setup.bash
