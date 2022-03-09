@@ -85,43 +85,43 @@ jobs:
         run: |
           docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
-  # build-ros-perception-l4t-arm64:
-  #   name: "Build ROS perception L4T ARM64 (NVIDIA XAVIER)"
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     BASE_IMAGE: "docker.pkg.github.com/sonia-auv/l4t-ros-base/l4t_ros_base:arm64-perception-develop"
-  #     ARCH: arm64
-  #     TARGET_TYPE: perception-l4t
-  #     TARGET_VERSION: feature
-  #     IMAGE_NAME: sonia_common
-  #     GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - name: Install QEMU to be able to compile on X86 into ARM64
-  #       run: |
-  #         sudo apt-get update && sudo apt-get install qemu binfmt-support qemu-user-static
-  #         docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+  build-ros-perception-l4t-arm64:
+    name: "Build ROS perception L4T ARM64 (NVIDIA XAVIER)"
+    runs-on: ubuntu-latest
+    env:
+      BASE_IMAGE: "nvcr.io/nvidia/l4t-base:r32.6.1"
+      ARCH: arm64
+      TARGET_TYPE: perception-l4t
+      TARGET_VERSION: feature
+      IMAGE_NAME: sonia_common
+      GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install QEMU to be able to compile on X86 into ARM64
+        run: |
+          sudo apt-get update && sudo apt-get install qemu binfmt-support qemu-user-static
+          docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
-  #     - name: Login to Github Package Registry
-  #       run: |
-  #         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Login to Github Package Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
-  #     - name: Build the docker image (perception based)
-  #       run: |
-  #         docker build . --tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BASE_IMAGE=${BASE_IMAGE}
+      - name: Build the docker image (perception based)
+        run: |
+          docker build -f Dockerfile.l4t --tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} --build-arg BASE_IMAGE=${BASE_IMAGE} .
 
-  #     - name: Run Module Unit Test
-  #       run: |
-  #         docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make --use-ninja run_tests
-  #         docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make --use-ninja tests
+      - name: Run Module Unit Test
+        run: |
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make --use-ninja run_tests
+          docker run build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} catkin_make --use-ninja tests
 
-  #     - name: Create Docker Image Tag
-  #       run: |
-  #         docker tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}-${GITHUB_REF##*/}
+      - name: Create Docker Image Tag
+        run: |
+          docker tag build-${TARGET_VERSION}-${GITHUB_REF##*/}-${GITHUB_RUN_NUMBER} ${GITHUB_REMOTE_URL}/${IMAGE_NAME}:${ARCH}-${TARGET_TYPE}-${TARGET_VERSION}-${GITHUB_REF##*/}
 
-  #     - name: Push Image to Github Packages Registry
-  #       run: |
-  #         docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
+      - name: Push Image to Github Packages Registry
+        run: |
+          docker push --all-tags ${GITHUB_REMOTE_URL}/${IMAGE_NAME}
 
   build-ros-perception-cuda-x86-64:
     name: "Build ROS perception CUDA X86/64"
