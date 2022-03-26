@@ -1,0 +1,93 @@
+## The l4t image is necessary for using the gpu on the jetson with nvidia-runtime-container.
+
+ARG BASE_IMAGE="nvcr.io/nvidia/l4t-base:r32.6.1"
+
+FROM ${BASE_IMAGE}
+
+ARG BUILD_DATE
+ARG VERSION
+ARG SONIA_USER=sonia
+ARG SONIA_UID=50000
+ARG BASE_LIB_NAME=sonia_common
+
+LABEL maintainer="club.sonia@etsmtl.net"
+LABEL net.etsmtl.sonia-auv.base_lib.build-date=${BUILD_DATE}
+LABEL net.etsmtl.sonia-auv.base_lib.version=${VERSION}
+LABEL net.etsmtl.sonia-auv.base_lib.name=${BASE_LIB_NAME}
+
+# System Specific
+ENV DEBIAN_FRONTEND=noninteractive
+
+# ROS Specific
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
+ENV ROS_DISTRO=melodic
+
+## COMMON ENV
+ENV ROS_LANG_DISABLE=genlisp:geneus
+ENV SONIA_USER=${SONIA_USER}
+ENV SONIA_HOME=/home/${SONIA_USER}
+ENV SONIA_UID=${SONIA_UID}
+ENV ROS_WS_SETUP=/opt/ros/${ROS_DISTRO}/setup.bash
+## ENV FOR BASE LIB
+ENV BASE_LIB_WS=${SONIA_HOME}/base_lib_ws
+ENV BASE_LIB_WS_SETUP=${BASE_LIB_WS}/devel/setup.bash
+ENV BASE_LIB_NAME=${BASE_LIB_NAME}
+ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
+
+# Highly inspired on
+# https://github.com/osrf/docker_images/blob/0b33e61b5bbed5b93b9fba2d5bae5db604ff9b58/ros/melodic/ubuntu/bionic/ros-core/Dockerfile
+# https://github.com/osrf/docker_images/blob/0b33e61b5bbed5b93b9fba2d5bae5db604ff9b58/ros/melodic/ubuntu/bionic/ros-base/Dockerfile
+# https://github.com/osrf/docker_images/blob/7ff09c2a75e902bc2bb25a1f1ae748ec4e9c7a4b/ros/melodic/ubuntu/bionic/robot/Dockerfile
+
+## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debuging)
+RUN apt update && apt install -y libyaml-cpp-dev openssh-client gdb git sudo ninja-build curl gnupg
+RUN apt upgrade -y
+RUN rm -rf /var/lib/apt/lists/*
+
+COPY scripts/${ENTRYPOINT_FILE} ./entrypoint.sh
+RUN chmod 777 ./entrypoint.sh
+
+## Installing ros melodic
+# setup timezone
+RUN echo 'Etc/UTC' > /etc/timezone && \
+    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    apt-get update && \
+    apt-get install -q -y --no-install-recommends tzdata && \
+    rm -rf /var/lib/apt/lists/*
+
+# Setup sources.list
+RUN echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list
+RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
+
+# Install bootstrap tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    dirmngr \
+    build-essential \
+    python-rosdep \
+    python-rosinstall \
+    python-vcstools \
+    && rosdep init  \
+    && rosdep update --rosdistro ${ROS_DISTRO} \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install ROS packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ros-melodic-desktop-full \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --uid ${SONIA_UID} --create-home ${SONIA_USER} -G sudo
+RUN echo 'sonia:test' | chpasswd
+
+## Add support for vscode extension volume caching
+RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
+
+WORKDIR ${BASE_LIB_WS}
+
+COPY . ${BASE_LIB_PATH}
+RUN bash -c "source ${ROS_WS_SETUP} && catkin_make --use-ninja"
+
+RUN chown -R ${SONIA_USER}: ${BASE_LIB_WS}
+
+ENTRYPOINT ["sh", "/entrypoint.sh"]
+CMD ["bash"]
