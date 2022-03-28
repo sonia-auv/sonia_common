@@ -1,6 +1,6 @@
 ## The l4t image is necessary for using the gpu on the jetson with nvidia-runtime-container.
 
-ARG BASE_IMAGE="nvcr.io/nvidia/l4t-base:r32.6.1"
+ARG BASE_IMAGE="nvcr.io/nvidia/l4t-tensorflow:r32.6.1-tf2.5-py3"
 
 FROM ${BASE_IMAGE}
 

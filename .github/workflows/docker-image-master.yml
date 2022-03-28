@@ -95,7 +95,7 @@ jobs:
     name: "Build ROS perception L4T ARM64 (NVIDIA XAVIER)"
     runs-on: ubuntu-latest
     env:
-      BASE_IMAGE: "nvcr.io/nvidia/l4t-base:r32.6.1"
+      BASE_IMAGE: "nvcr.io/nvidia/l4t-tensorflow:r32.6.1-tf2.5-py3"
       ARCH: arm64
       TARGET_TYPE: perception-l4t
       IMAGE_NAME: sonia_common
