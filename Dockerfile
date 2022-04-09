@@ -36,11 +36,6 @@ RUN echo 'sonia:test' | chpasswd
 ## Add support for vscode extension volume caching
 RUN mkdir -p ${SONIA_HOME}/.vscode-server/extensions && chown -R ${SONIA_USER}: ${SONIA_HOME}/.vscode-server
 
-## Adding Gazebo messages for control visualization.
-WORKDIR ${BASE_LIB_WS}/src
-RUN git clone https://github.com/ros-simulation/gazebo_ros_pkgs.git
-RUN cd gazebo_ros_pkgs && rm -r gazebo_dev gazebo_plugins gazebo_ros gazebo_ros_control gazebo_ros_pkgs
-
 WORKDIR ${BASE_LIB_WS}
 
 COPY . ${BASE_LIB_PATH}
