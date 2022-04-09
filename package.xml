@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>sonia_common</name>
-  <version>1.1.6</version>
+  <version>1.1.7</version>
   <description>sonia_common</description>
   <maintainer email="club.sonia@etsmtl.net">Club SONIA</maintainer>
   <license>GPLv3</license>
