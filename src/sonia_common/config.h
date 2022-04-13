@@ -34,9 +34,9 @@ namespace sonia_common {
 
 /// The path where the system will save all the configurations.
 #ifdef OS_DARWIN
-    const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP");
+    const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP") ? std::getenv("ROS_WS_SETUP") : "/opt/ros/noetic/setup.bash";
 #else
-    const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP");
+    const std::string kWorkspaceRoot = std::getenv("ROS_WS_SETUP") ? std::getenv("ROS_WS_SETUP") : "/opt/ros/noetic/setup.bash";
 #endif
 
 /// The path where the system will save all the log files (e.g. from Logger).
