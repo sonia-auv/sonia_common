@@ -31,6 +31,7 @@ ENV SCRIPT_DIR=${BASE_LIB_PATH}/scripts
 ENV ENTRYPOINT_FILE=sonia_entrypoint.sh
 
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
 RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-noetic-diagnostics libboost-python-dev sudo ninja-build 
 RUN rm -rf /var/lib/apt/lists/*
 
