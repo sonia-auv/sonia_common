@@ -1,6 +1,6 @@
 # Tells the filter which filter output to show.
 # Concerned execution
-string execution
+string exec_name
 
 # Filterchain, if exec null, to get params from
 string filterchain

@@ -30,8 +30,19 @@ ENV BASE_LIB_PATH=${BASE_LIB_WS}/src/${BASE_LIB_NAME}
 ENV SCRIPT_DIR=${BASE_LIB_PATH}/scripts
 ENV ENTRYPOINT_FILE=sonia_entrypoint.sh
 
+RUN sed -i '/developer\.download\.nvidia\.com\/compute\/cuda\/repos/d' /etc/apt/sources.list 
+RUN sudo apt-key del 7fa2af80
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.0-1_all.deb
+RUN sudo dpkg -i cuda-keyring_1.0-1_all.deb
+
 ## ADD EXTRA DEPENDENCIES (GIT and ROS Remote Debugging)
-RUN apt update && apt install -y gdb libyaml-cpp-dev openssh-client ros-noetic-diagnostics libboost-python-dev sudo ninja-build 
+RUN apt update
+RUN apt install -y gdb 
+RUN apt install -y libyaml-cpp-dev 
+RUN apt install openssh-client 
+RUN apt install ros-noetic-diagnostics 
+RUN apt install libboost-python-dev 
+RUN apt install sudo ninja-build 
 RUN rm -rf /var/lib/apt/lists/*
 
 COPY scripts/${ENTRYPOINT_FILE} /entrypoint.sh
