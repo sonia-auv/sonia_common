@@ -1,5 +1,5 @@
 #Name of classe
-std_msgs/String class_name
+string class_name
 
 #Prediction confidence
 float32 confidence
