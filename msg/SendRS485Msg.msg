@@ -19,6 +19,7 @@ uint8 CMD_KILL = 1
 # les define de la backplane/PSU
 uint8 CMD_VOLTAGE = 0
 uint8 CMD_CURRENT = 1
+uint8 CMD_TEMPERATURE = 2
 
 # les define de la backplane/ESC
 uint8 CMD_READ_MOTOR = 15
