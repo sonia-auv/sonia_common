@@ -1,0 +1,2 @@
+uint8 mission_id
+int8 mission_state
