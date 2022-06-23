@@ -33,6 +33,10 @@ uint8 CMD_IO_TORPEDO_ACTION = 2
 uint8 CMD_IO_ARM_ACTION = 3
 uint8 CMD_IO_LEAK_SENSOR = 4
 
+#Common CMD
+# 30 is the last command number allowed
+uint8 CMD_KEEP_ALIVE = 30
+
 # DATA
 
 # define IO CONTROL
