@@ -1,5 +1,5 @@
 Header header
-ObstacleInfo obstacle
+ObstacleInfo[] obstacles
 
 
 
