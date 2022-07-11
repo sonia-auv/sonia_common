@@ -1,8 +1,7 @@
 std_msgs/Header header
-float64 x
-float64 y
-float64 z
+float64 phaseRef
+float64 phase1
+float64 phase2
+float64 phase3
 uint16 frequency
-float64 heading
-float64 elevation
 uint16 debug
