@@ -61,7 +61,7 @@ ATLAS_ALWAYS_INLINE void Runnable::Start() {
 
 //------------------------------------------------------------------------------
 //
-ATLAS_ALWAYS_INLINE void Runnable::Stop() ATLAS_NOEXCEPT {
+ATLAS_ALWAYS_INLINE void Runnable::Stop() ATLAS_NOEXCEPT_(false) {
   if (IsRunning()) {
     stop_ = true;
     thread_->join();
