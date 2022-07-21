@@ -3,6 +3,7 @@ uint8 Info=0
 uint8 Warning=1
 uint8 Error=2
 uint8 Critical=3
+uint8 AllGood=4
 
 # topic definition
 string Module
