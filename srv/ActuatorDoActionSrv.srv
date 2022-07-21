@@ -20,5 +20,5 @@ uint8 ACTION_ARM_EXEC = 1
 uint8 element
 uint8 side
 uint8 action
-
 ---
+bool success
