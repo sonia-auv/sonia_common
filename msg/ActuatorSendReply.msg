@@ -1,0 +1,17 @@
+uint8 ELEMENT_TORPEDO = 0
+uint8 ELEMENT_DROPPER = 1
+uint8 ELEMENT_ARM = 2
+
+uint8 SIDE_PORT = 0
+uint8 SIDE_STARBOARD = 1
+
+uint8 ARM_CLOSE = 0
+uint8 ARM_OPEN = 1
+
+uint8 RESPONSE_FAILURE = 0
+uint8 RESPONSE_SUCCESS = 1
+uint8 RESPONSE_TIMED_OUT = 2
+
+uint8 element
+uint8 side
+uint8 response
