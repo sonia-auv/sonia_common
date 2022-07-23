@@ -78,12 +78,12 @@ Tp_ Clamp(const Tp_ &x, const Up_ &v);
 /**
  * \param v The variance
  */
-double Gaussian(const double &x, const double &v) ATLAS_NOEXCEPT;
+double Gaussian(const double &x, const double &v) ATLAS_NOEXCEPT_(false);
 
 /**
  * \param v The variance
  */
-double NormalizedGaussian(const double &x, const double &v) ATLAS_NOEXCEPT;
+double NormalizedGaussian(const double &x, const double &v) ATLAS_NOEXCEPT_(false);
 
 /**
  * This function will round the value to n significant digits.

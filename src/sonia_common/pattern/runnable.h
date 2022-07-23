@@ -92,7 +92,7 @@ class Runnable {
    * a looping parallel task must check for the stop_ member state, otherwise,
    * the stop() call will be blocking forever.
    */
-  void Stop() ATLAS_NOEXCEPT;
+  void Stop() ATLAS_NOEXCEPT_(false);
 
   /**
    * Return either if the derived Runnable is currently running or not.

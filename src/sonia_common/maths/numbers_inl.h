@@ -71,7 +71,7 @@ ATLAS_ALWAYS_INLINE Tp_ Clamp(const Tp_ &x, const Up_ &v) {
 //------------------------------------------------------------------------------
 //
 ATLAS_ALWAYS_INLINE double Gaussian(const double &x,
-                                    const double &v) ATLAS_NOEXCEPT {
+                                    const double &v) ATLAS_NOEXCEPT_(false) {
   if (v == 0) {
     throw std::invalid_argument("The variance cannot be null");
   }
@@ -82,7 +82,7 @@ ATLAS_ALWAYS_INLINE double Gaussian(const double &x,
 //------------------------------------------------------------------------------
 //
 ATLAS_ALWAYS_INLINE double NormalizedGaussian(const double &x,
-                                              const double &v) ATLAS_NOEXCEPT {
+                                              const double &v) ATLAS_NOEXCEPT_(false) {
   if (v == 0) {
     throw std::invalid_argument("The variance cannot be null");
   }
