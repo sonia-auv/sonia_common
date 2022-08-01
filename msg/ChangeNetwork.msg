@@ -1,0 +1,5 @@
+#request value
+string network_name
+string topic
+float32 threshold
+
