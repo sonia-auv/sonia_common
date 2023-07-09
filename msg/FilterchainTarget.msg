@@ -1,3 +1,4 @@
 BoundingBox2D bounding_box
+float64 ctr_box_width
 geometry_msgs/Pose2D obj_ctr
 float64 obj_size
