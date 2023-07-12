@@ -1,0 +1,3 @@
+geometry_msgs/Pose2D obj_ctr
+float64 obj_size
+float64 obj_angle
