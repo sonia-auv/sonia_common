@@ -52,13 +52,6 @@ jobs:
       GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
-      - name: Enable Docker Daemon Experimental Features
-        run: |
-          sudo rm /etc/docker/daemon.json
-          echo '{"experimental": true , "cgroup-parent": "/actions_job" }' | sudo tee -a /etc/docker/daemon.json
-          sudo service docker restart
-          docker version
-
       - name: Install QEMU to be able to compile on X86 into ARM64
         run: |
           sudo apt-get update && sudo apt-get install qemu binfmt-support qemu-user-static
@@ -170,13 +163,6 @@ jobs:
       GITHUB_REMOTE_URL: docker.pkg.github.com/${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
-      - name: Enable Docker Daemon Experimental Features
-        run: |
-          sudo rm /etc/docker/daemon.json
-          echo '{"experimental": true , "cgroup-parent": "/actions_job" }' | sudo tee -a /etc/docker/daemon.json
-          sudo service docker restart
-          docker version
-
       - name: Install QEMU to be able to compile on X86 into ARM64
         run: |
           sudo apt-get update && sudo apt-get install qemu binfmt-support qemu-user-static
