@@ -1,0 +1,7 @@
+uint8 OFF = 0
+uint8 FRONT = 1
+uint8 BOTTOM = 2
+uint8 BOTH = 3
+
+uint8 ai_activation
+---
